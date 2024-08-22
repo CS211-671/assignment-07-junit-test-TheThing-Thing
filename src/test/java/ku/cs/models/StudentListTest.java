@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentListTest {
 
     @Test
-    public void testAddNewStudentAndFindStudentById() {
+    public void testAddNewStudentAndFindStudentByIdIsFound() {
         StudentList studentList = new StudentList();
         studentList.addNewStudent("66xxxxx1", "Joe");
         studentList.addNewStudent("66xxxxx2", "Jill");
@@ -19,9 +19,19 @@ class StudentListTest {
         String actual = student.getName();
         assertEquals(expected, actual);
     }
+    @Test
+    public void testFindStudentByIdIsNotFound() {
+        StudentList studentList = new StudentList();
+        studentList.addNewStudent("66xxxxx1", "Joe");
+        studentList.addNewStudent("66xxxxx2", "Jill");
+
+
+        Student student = studentList.findStudentById("66xxxxx3");
+        assertNull(student);
+    }
 
     @Test
-    public void testAddNewStudentAndGiveScoreToId() {
+    public void testAddNewStudentAndGiveScoreToIdAddViewGradeOfId() {
         StudentList studentList = new StudentList();
         studentList.addNewStudent("66xxxxx1", "Joe",50);
         studentList.addNewStudent("66xxxxx2", "Jill",80);
@@ -31,7 +41,20 @@ class StudentListTest {
         String actual = studentList.viewGradeOfId("66xxxxx1");
         String expected = "B";
         assertEquals(expected, actual);
-
     }
+
+    @Test
+    public void testAddNewStudentAddViewGradeOfIdIsNotFound() {
+        StudentList studentList = new StudentList();
+        studentList.addNewStudent("66xxxxx1", "Joe",50);
+        studentList.addNewStudent("66xxxxx2", "Jill",80);
+
+        String actual = studentList.viewGradeOfId("66xxxxx3");
+        assertNull(actual);
+    }
+
+
+
+
 
 }
